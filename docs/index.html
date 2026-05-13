@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>拼音相机 - 智能识字助手</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+            line-height: 1.6;
+            color: #1d1d1f;
+            background: #fff;
+        }
+        .hero {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 90vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 60px 20px;
+            position: relative;
+            overflow: hidden;
+        }
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 1px, transparent 1px);
+            background-size: 50px 50px;
+            animation: float 20s linear infinite;
+        }
+        @keyframes float {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(50px, 50px); }
+        }
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+        }
+        .hero-badge {
+            display: inline-block;
+            background: rgba(255,255,255,0.2);
+            backdrop-filter: blur(10px);
+            padding: 8px 20px;
+            border-radius: 20px;
+            color: white;
+            font-size: 14px;
+            margin-bottom: 20px;
+        }
+        .hero h1 {
+            font-size: clamp(36px, 8vw, 64px);
+            font-weight: 700;
+            color: white;
+            margin-bottom: 20px;
+            text-shadow: 0 2px 20px rgba(0,0,0,0.2);
+        }
+        .hero-tagline {
+            font-size: clamp(18px, 4vw, 24px);
+            color: rgba(255,255,255,0.9);
+            margin-bottom: 40px;
+        }
+        .hero-image {
+            max-width: 280px;
+            margin: 0 auto;
+            animation: floatDevice 3s ease-in-out infinite;
+        }
+        @keyframes floatDevice {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
+        }
+        .hero-image img {
+            width: 100%;
+            height: auto;
+            border-radius: 30px;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.3);
+        }
+        .cta-button {
+            display: inline-block;
+            background: white;
+            color: #667eea;
+            padding: 16px 40px;
+            border-radius: 50px;
+            font-size: 18px;
+            font-weight: 600;
+            text-decoration: none;
+            margin-top: 30px;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+        }
+        .features {
+            padding: 80px 20px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        .section-title {
+            text-align: center;
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 50px;
+        }
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+        .feature-card {
+            background: #f8f9fa;
+            padding: 30px;
+            border-radius: 20px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+        .feature-icon {
+            font-size: 48px;
+            margin-bottom: 15px;
+        }
+        .feature-card h3 {
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+        .feature-card p {
+            color: #6e6e73;
+            font-size: 15px;
+        }
+        .screenshots {
+            padding: 80px 20px;
+            background: #f8f9fa;
+        }
+        .screenshots-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+        .screenshot-item {
+            background: white;
+            padding: 20px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        .screenshot-item img {
+            width: 100%;
+            height: auto;
+            border-radius: 12px;
+        }
+        .how-it-works {
+            padding: 80px 20px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .steps {
+            display: grid;
+            gap: 30px;
+        }
+        .step {
+            display: flex;
+            align-items: flex-start;
+            gap: 20px;
+        }
+        .step-number {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+        .step-content h3 {
+            font-size: 20px;
+            margin-bottom: 8px;
+        }
+        .step-content p {
+            color: #6e6e73;
+        }
+        .privacy-section {
+            padding: 60px 20px;
+            background: #f8f9fa;
+            text-align: center;
+        }
+        .privacy-box {
+            max-width: 600px;
+            margin: 0 auto;
+            background: white;
+            padding: 30px;
+            border-radius: 20px;
+        }
+        .privacy-box h3 {
+            font-size: 22px;
+            margin-bottom: 15px;
+        }
+        .privacy-box p {
+            color: #6e6e73;
+            margin-bottom: 10px;
+        }
+        .privacy-box .highlight {
+            color: #667eea;
+            font-weight: 600;
+        }
+        .footer {
+            padding: 40px 20px;
+            text-align: center;
+            background: #1d1d1f;
+            color: rgba(255,255,255,0.7);
+        }
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+        .footer-links a {
+            color: rgba(255,255,255,0.7);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        .footer-links a:hover {
+            color: white;
+        }
+        .lang-switch {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 100;
+        }
+        .lang-switch a {
+            background: rgba(255,255,255,0.2);
+            backdrop-filter: blur(10px);
+            padding: 10px 20px;
+            border-radius: 20px;
+            color: white;
+            text-decoration: none;
+            font-size: 14px;
+            transition: all 0.3s ease;
+        }
+        .lang-switch a:hover {
+            background: rgba(255,255,255,0.3);
+        }
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 36px;
+            }
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+            .screenshots-container {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="lang-switch">
+        <a href="marketing-hk.html">繁體中文</a>
+    </div>
+
+    <section class="hero">
+        <div class="hero-content">
+            <span class="hero-badge">📚 专为中文学习设计</span>
+            <h1>拼音相机</h1>
+            <p class="hero-tagline">拍照识字，轻松标注拼音</p>
+            <div class="hero-image">
+                <img src="images/ipad-screenshot1.png" alt="拼音相机应用界面">
+            </div>
+            <a href="https://apps.apple.com/app/idXXXXXXXXX" class="cta-button">立即下载</a>
+        </div>
+    </section>
+
+    <section class="features">
+        <h2 class="section-title">核心功能</h2>
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">📸</div>
+                <h3>拍照识别</h3>
+                <p>直接拍摄课本或文件，智能识别文字内容</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🔤</div>
+                <h3>拼音标注</h3>
+                <p>自动为识别的文字添加准确拼音标注</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">💾</div>
+                <h3>保存导出</h3>
+                <p>一键保存到相册，方便随时查看学习</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">📱</div>
+                <h3>相册导入</h3>
+                <p>支持从相册选择图片进行识别处理</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="screenshots">
+        <h2 class="section-title">应用截图</h2>
+        <div class="screenshots-container">
+            <div class="screenshot-item">
+                <img src="images/ipad-screenshot1.png" alt="截图1">
+            </div>
+            <div class="screenshot-item">
+                <img src="images/ipad-screenshot2.png" alt="截图2">
+            </div>
+        </div>
+    </section>
+
+    <section class="how-it-works">
+        <h2 class="section-title">使用方法</h2>
+        <div class="steps">
+            <div class="step">
+                <div class="step-number">1</div>
+                <div class="step-content">
+                    <h3>拍摄或导入图片</h3>
+                    <p>使用相机拍摄课本、文件，或从相册选择已有图片</p>
+                </div>
+            </div>
+            <div class="step">
+                <div class="step-number">2</div>
+                <div class="step-content">
+                    <h3>自动识别标注</h3>
+                    <p>应用自动识别文字并添加拼音标注，完全在设备本地处理</p>
+                </div>
+            </div>
+            <div class="step">
+                <div class="step-number">3</div>
+                <div class="step-content">
+                    <h3>保存分享</h3>
+                    <p>将标注好的图片保存到相册，随时查看学习</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="privacy-section">
+        <div class="privacy-box">
+            <h3>🔒 隐私优先</h3>
+            <p><span class="highlight">完全离线工作</span> — 所有识别都在您的设备上完成</p>
+            <p><span class="highlight">不上传任何数据</span> — 图片永远不会离开您的设备</p>
+            <p><span class="highlight">无广告无追踪</span> — 干净纯粹的使用体验</p>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="footer-links">
+            <a href="support.html">技术支持</a>
+            <a href="privacy.html">隐私政策</a>
+        </div>
+        <p>&copy; 2026 拼音相机. All rights reserved.</p>
+    </footer>
+</body>
+</html>
