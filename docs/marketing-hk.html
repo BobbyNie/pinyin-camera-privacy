@@ -162,6 +162,12 @@
             height: auto;
             border-radius: 12px;
         }
+        .screenshot-caption {
+            margin-top: 12px;
+            color: #6e6e73;
+            font-size: 14px;
+            text-align: center;
+        }
         .how-it-works {
             padding: 80px 20px;
             max-width: 800px;
@@ -282,9 +288,9 @@
         <div class="hero-content">
             <span class="hero-badge">📚 專為中文學習設計</span>
             <h1>拼音相機</h1>
-            <p class="hero-tagline">拍攝識字，輕鬆標註拼音</p>
+            <p class="hero-tagline">拍攝識字，標註拼音、全文朗讀、選詞聽寫</p>
             <div class="hero-image">
-                <img src="images/ipad-guide.png" alt="拼音相機應用介面">
+                <img src="images/usage-guide-v2-2-chatgpt.png" alt="拼音相機 2.2 使用說明">
             </div>
             <a href="https://apps.apple.com/app/id6766483875" class="cta-button">立即下載</a>
         </div>
@@ -313,6 +319,21 @@
                 <h3>相簿匯入</h3>
                 <p>支援從相簿選擇圖片進行辨識處理</p>
             </div>
+            <div class="feature-card">
+                <div class="feature-icon">🔎</div>
+                <h3>課文區域選擇</h3>
+                <p>拍攝或匯入後可自動選區，也可拖動四角微調後再辨識</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🔊</div>
+                <h3>全文朗讀</h3>
+                <p>按閱讀順序朗讀整頁內容，並同步高亮目前文字</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">✍️</div>
+                <h3>選詞聽寫</h3>
+                <p>在辨識結果頁滑動選擇詞語，快速生成聽寫列表</p>
+            </div>
         </div>
     </section>
 
@@ -320,10 +341,20 @@
         <h2 class="section-title">應用截圖</h2>
         <div class="screenshots-container">
             <div class="screenshot-item">
-                <img src="images/ipad-screenshot1.jpg" alt="截圖1">
+                <img src="images/v2-2-ipad-full-read.jpg" alt="拼音標註和全文朗讀">
+                <p class="screenshot-caption">拼音標註、浮窗閱讀與全文朗讀</p>
             </div>
             <div class="screenshot-item">
-                <img src="images/ipad-screenshot2.png" alt="截圖2">
+                <img src="images/v2-2-ipad-area-selection.jpg" alt="課文區域選擇">
+                <p class="screenshot-caption">自動辨識課文區域，可拖動四角調整</p>
+            </div>
+            <div class="screenshot-item">
+                <img src="images/v2-2-iphone-ocr.jpg" alt="iPhone 拼音標註">
+                <p class="screenshot-caption">iPhone 上同樣支援拍攝、選圖和拼音標註</p>
+            </div>
+            <div class="screenshot-item">
+                <img src="images/v2-2-iphone-dictation.jpg" alt="選詞聽寫列表">
+                <p class="screenshot-caption">選詞後進入聽寫列表，支援讀速、間隔和順序設定</p>
             </div>
         </div>
     </section>
@@ -341,15 +372,22 @@
             <div class="step">
                 <div class="step-number">2</div>
                 <div class="step-content">
-                    <h3>自動辨識標註</h3>
-                    <p>應用自動辨識文字並添加拼音標註，完全在裝置本地處理</p>
+                    <h3>確認課文區域</h3>
+                    <p>自動選取課文主體，也可以拖動四角，只辨識需要學習的區域</p>
                 </div>
             </div>
             <div class="step">
                 <div class="step-number">3</div>
                 <div class="step-content">
-                    <h3>儲存分享</h3>
-                    <p>將標註好的圖片儲存到相簿，隨時查看學習</p>
+                    <h3>閱讀和朗讀</h3>
+                    <p>自動添加拼音標註，點擊可放大查看，一鍵按順序朗讀整頁</p>
+                </div>
+            </div>
+            <div class="step">
+                <div class="step-number">4</div>
+                <div class="step-content">
+                    <h3>選詞聽寫或儲存</h3>
+                    <p>滑動選擇詞語進入聽寫，也可將標註好的圖片儲存到相簿</p>
                 </div>
             </div>
         </div>
