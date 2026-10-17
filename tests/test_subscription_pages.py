@@ -50,6 +50,7 @@ class SubscriptionPagesTests(unittest.TestCase):
                     self.assertTrue(parsed.viewport)
                     self.assertFalse(parsed.scripts)
                     self.assertIn('2026', source)
+                    self.assertIn('3.0', source)
                     self.assertIn('bobbynie@gmail.com', source)
                     for link in parsed.links:
                         target = urlsplit(link)
